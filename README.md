@@ -32,4 +32,4 @@ python3 run_parser.py --input_folder json/folder/path --output_folder output/fol
 
 ## Notes
 
-    * Be careful with module/make_header.py.  The header format is finicky, e.g. most items are separated by tabs, not spaces.  Modifying it (e.g. converting the tabs to 4 spaces) might break TSV readers/parsers.
+* Be careful with module/make_header.py.  The header format is finicky, e.g. most items are separated by tabs, not spaces.  Modifying it (e.g. converting the tabs to 4 spaces) might break TSV readers/parsers.
