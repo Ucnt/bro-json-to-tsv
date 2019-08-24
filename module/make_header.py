@@ -6,7 +6,7 @@ Author: Matt Svensson
 Purpose: Return the TSV header given a file type.
 
 '''
-from type_mapper import fields_dict, types_dict
+from module.type_mapper import fields_dict, types_dict
 
 
 def make_header(file_type):

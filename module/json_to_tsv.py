@@ -9,7 +9,7 @@ Purpose: Convert the line of JSON to a TSV, given its file type (e.g. conn, dhcp
 import json
 import time
 import datetime
-from type_mapper import fields_dict
+from module.type_mapper import fields_dict
 
 
 def json_to_tsv(line, file_type):
