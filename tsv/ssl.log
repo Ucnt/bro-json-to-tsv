@@ -1,0 +1,9 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	ssl
+#open	0000-00-00-00-00-00
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	version	cipher	curve	server_name	resumed	last_alert	next_protocol	established	cert_chain_fuids	client_cert_chain_fuids	subject	issuer	client_subject	client_issuer	validation_status	ja3	ja3s
+#types	time	string	addr	port	addr	port	string	string	string	string	bool	string	string	bool	vector[string]	vector[string]	string	string	string	string	string	string	string
+1555221612.128400	C1K46s3gJqGAF5P2fd	192.168.0.1	46700	64.233.177.102	443	TLSv13	TLS_AES_128_GCM_SHA256	-	play.google.com	True	-	-	True	-	-	-	-	-	-	-	554719594ba90b02ae410c297c6e50ad	2b0648ab686ee45e0e7c35fcfb0eea7e
