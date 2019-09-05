@@ -53,7 +53,7 @@ if __name__ == "__main__":
     except FileExistsError:
         pass
 
-    # Get an array of all fo the files in the input folder
+    # Get an array of all of the files in the input folder
     files = get_files_in_folder(input_folder)
 
     # Run the files
