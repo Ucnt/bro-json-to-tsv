@@ -11,11 +11,11 @@ Security Onion, by default, creates the bro telemetry as JSON.  Several vendors 
 ## Requirements
 
 * python3, python3-pip
-* Libraries: tqdm
+* Libraries: tqdm  (can be installed with pip3 install -r requirements.txt)
 
 ## Execution
 
-python3 run_parser.py --input_folder json/folder/path --output_folder output/folder/path
+python3 run_parser.py --input_folder /json/folder/path --output_folder /output/folder/path
 
 ## Methodology
 
