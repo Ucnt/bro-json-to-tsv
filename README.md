@@ -5,8 +5,7 @@
 Covert Bro JSON files (specifically, conn, dns, http and ssl) in the input_folder to TSV in the output_folder 
 
 ## Background
-
-Black Hills Information Security has an awesome project called RITA (https://www.blackhillsinfosec.com/projects/rita/) that analyzes bro, TSV, telemetry.
+Active Countermeasures (https://www.activecountermeasures.com/) has an awesome project called RITA (https://github.com/activecm/rita) that analyzes bro, TSV, telemetry.
 
 Security Onion, by default, creates the bro telemetry as JSON and, for me as an example, several other vendors only take JSON.  So, I needed a way to have both types.
 
