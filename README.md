@@ -8,6 +8,14 @@ Active Countermeasures (https://www.activecountermeasures.com/) has an awesome p
 
 Security Onion, by default, creates the bro telemetry as JSON.  Several vendors I used needed JSON so the easiest thing was to create a converter.
 
+## Architecture
+
+The optimal way to use this script is to:
+
+1. Import your logs on the same box that RITA is installed on
+2. Conver those logs with these scripts
+3. Use a rolling import of the converted logs into RITA.
+
 ## Requirements
 
 * python3, python3-pip
