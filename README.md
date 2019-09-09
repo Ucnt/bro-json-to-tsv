@@ -54,4 +54,5 @@ Result:
 ## Notes
 
 * Be careful with module/make_header.py.  The header format is finicky, e.g. most items are separated by tabs, not spaces.  Modifying it (e.g. converting the tabs to 4 spaces) will break TSV readers/parsers.
-* All initial and resultingfiles will be maintained.  It is up to you to manage the file deletion on  your  own.
+* All initial and resulting files will be maintained.  It is up to you to manage the file deletion on  your own if you're  changing  in/out  files.
+* The script  will overwrite files in the  output folder if it already exists.
