@@ -33,4 +33,4 @@ def get_type(line):
                 return file_type
         return ""
     except Exception as e:
-        print("Error getting type %s" % (str(e)))
+        print("Error getting type from %s - Error: %s" % (line, str(e)))
