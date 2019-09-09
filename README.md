@@ -12,9 +12,15 @@ Security Onion, by default, creates the bro telemetry as JSON.  Several vendors 
 
 The optimal way to use this script is to:
 
-1. Import your logs on the same box that RITA is installed on
-2. Conver those logs with these scripts
-3. Use a rolling import of the converted logs into RITA.
+1. Get your logs onto the same box that RITA is installed on
+2. Convert those logs with these scripts
+3. Use a rolling import of the converted logs into RITA
+
+As an example, below is the methodology I use:
+
+1. On each Security Onion worker, use google-fluentd to send conn, dns, http, and ssl logs to Stackdriver.  (Alternately, you could add a new syslog destination for those logs via /etc/syslog-ng/syslog.conf)
+2. Export those logs from Stackdriver to GCS (occurs hourly)
+3. An hourly cronjob, on the RITA box, downloads the new logs from GCS, converts them using these scripts, and imports the logs into RITA.
 
 ## Requirements
 
