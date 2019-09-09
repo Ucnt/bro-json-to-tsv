@@ -20,7 +20,7 @@ As an example, below is the methodology I use:
 
 1. On each Security Onion worker, use google-fluentd to send conn, dns, http, and ssl logs to Stackdriver.  (Alternately, you could add a new syslog destination for those logs via /etc/syslog-ng/syslog.conf)
 2. Export those logs from Stackdriver to GCS (occurs hourly)
-3. An hourly cronjob, on the RITA box, downloads the new logs from GCS, converts them using these scripts, imports the logs into RITA with a rolling import, deletes the logs you just imported (since it's a rolling chunked import).
+3. An hourly cronjob, on the RITA box, downloads the new logs from GCS, converts them using these scripts, imports the logs into RITA with a rolling import, delete the logs you just imported (since it's a rolling chunked import).
 
 ## Requirements
 
@@ -29,8 +29,19 @@ As an example, below is the methodology I use:
 
 ## Execution
 
-```python3 run_parser.py --input_folder /json/folder/path --output_folder /output/folder/path```
+```
+Given JSON files:
+/json/folder/path/first.log
+/json/folder/path/second.log
+/json/folder/path/third.log.gz
 
+Run: python3 run_parser.py --input_folder /json/folder/path --output_folder /output/folder/path
+
+Result:
+/output/folder/path/first.log
+/output/folder/path/second.log
+/output/folder/path/third.log
+```
 
 ## Methodology
 
@@ -43,3 +54,4 @@ As an example, below is the methodology I use:
 ## Notes
 
 * Be careful with module/make_header.py.  The header format is finicky, e.g. most items are separated by tabs, not spaces.  Modifying it (e.g. converting the tabs to 4 spaces) will break TSV readers/parsers.
+* All initial and resultingfiles will be maintained.  It is up to you to manage the file deletion on  your  own.
