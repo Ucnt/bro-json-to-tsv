@@ -20,7 +20,7 @@ As an example, below is the methodology I use:
 
 1. On each Security Onion worker, use google-fluentd to send conn, dns, http, and ssl logs to Stackdriver.  (Alternately, you could add a new syslog destination for those logs via /etc/syslog-ng/syslog.conf)
 2. Export those logs from Stackdriver to GCS (occurs hourly)
-3. An hourly cronjob, on the RITA box, downloads the new logs from GCS, converts them using these scripts, and imports the logs into RITA.
+3. An hourly cronjob, on the RITA box, downloads the new logs from GCS, converts them using these scripts, imports the logs into RITA with a rolling import, deletes the logs you just imported (since it's a rolling chunked import).
 
 ## Requirements
 
