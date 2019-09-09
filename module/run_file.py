@@ -30,9 +30,12 @@ def run_file(path, file_name, output_folder):
                     header = make_header(file_type=file_type)
                     output_file.write("%s\n" % (header))
                     first = False
-                line_tsv = json_to_tsv(line=line, file_type=file_type)
-                if line_tsv:
-                    output_file.write("%s\n" % (line_tsv))
+                elif file_type != "":
+                    line_tsv = json_to_tsv(line=line, file_type=file_type)
+                    if line_tsv:
+                        output_file.write("%s\n" % (line_tsv))
+                else:
+                    print("Haven't been able to figure out what type of file this is: %s%s" (path, file_name))
 
         # Close the new tsv file
         output_file.close()
