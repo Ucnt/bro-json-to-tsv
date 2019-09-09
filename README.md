@@ -29,7 +29,8 @@ As an example, below is the methodology I use:
 
 ## Execution
 
-python3 run_parser.py --input_folder /json/folder/path --output_folder /output/folder/path
+```python3 run_parser.py --input_folder /json/folder/path --output_folder /output/folder/path```
+
 
 ## Methodology
 
