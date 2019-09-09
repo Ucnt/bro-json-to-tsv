@@ -57,6 +57,7 @@ if __name__ == "__main__":
     files = get_files_in_folder(input_folder)
 
     # Run the files
+    print("Converting files from JSON to TSV")
     pbar = tqdm(total=len(files))
     def update(*a):
         pbar.update()
