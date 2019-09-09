@@ -16,10 +16,6 @@ def json_to_tsv(line, file_type):
     # Parse the line into json
     line_json = json.loads(line.strip())
 
-    # Dynamically see what type of file it is
-    if not type:
-        return "", "", ""
-
     fields = []
     for field in fields_dict[file_type]:
         try:
