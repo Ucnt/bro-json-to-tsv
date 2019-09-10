@@ -47,7 +47,7 @@ if __name__ == "__main__":
     # Setup pool for processing the files
     pool = multiprocessing.Pool(processes=multiprocessing.cpu_count())
 
-    # Be sure new folder is created
+    # Be sure base output folder folder is created
     try:
         os.mkdir(output_folder)
     except FileExistsError:
@@ -62,7 +62,22 @@ if __name__ == "__main__":
     def update(*a):
         pbar.update()
     for path, file_name in files:
-        pool.apply_async(run_file, args=(path, file_name, output_folder, ), callback=update)
+        full_path_old = "%s/%s" % (path, file_name)
+        full_path_old = full_path_old.replace("//","/")
+
+        full_path_new = "%s/%s" % (path, file_name)
+        full_path_new = full_path_new.replace(input_folder, output_folder).replace("//","/")
+
+        if os.path.isdir(full_path_old):
+            # In case there is a sub-directory, be sure the folder exists
+            try:
+                print("Making directory: %s" % (full_path_new))
+                os.makedirs(full_path_new)
+            except FileExistsError:
+                pass
+        else:
+            print("Running: %s" % (full_path_old))
+            pool.apply_async(run_file, args=(full_path_old, full_path_new, ), callback=update)
 
     # Keep running until everything is done
     pool.close()

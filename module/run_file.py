@@ -10,15 +10,14 @@ from module.json_to_tsv import json_to_tsv
 from module.make_header import make_header
 from module.type_mapper import get_type
 
-def run_file(path, file_name, output_folder):
+def run_file(full_path_old, full_path_new):
     try:
-        # Create an output file for the new TSV
-        output_file = open("%s/%s" % (output_folder, file_name), "w+")
+        output_file = open(full_path_new, "w+")
 
         # Read in all fo the new file and write new lines to the output file
         first = True
         file_type = ""
-        with open ("%s/%s" % (path, file_name), "r") as f:
+        with open (full_path_old, "r") as f:
             for line in f:
                 line = line.strip()
                 if not line or line.startswith("#"):
@@ -26,7 +25,7 @@ def run_file(path, file_name, output_folder):
                 if first:
                     file_type = get_type(line=line)
                     if not file_type:
-                        print("Can't identify file type of %s%s" % (path, file_name))
+                        print("Can't identify file type of %s" % (full_path_old))
                     header = make_header(file_type=file_type)
                     output_file.write("%s\n" % (header))
                     first = False
@@ -35,9 +34,9 @@ def run_file(path, file_name, output_folder):
                     if line_tsv:
                         output_file.write("%s\n" % (line_tsv))
                 else:
-                    print("Haven't been able to figure out what type of file this is: %s%s" (path, file_name))
+                    print("Haven't been able to figure out what type of file this is: %s" (full_path_old))
 
         # Close the new tsv file
         output_file.close()
     except Exception as e:
-        print("Error parsing %s%s - %s" % (path, file_name, str(e)))
+        print("Error parsing %s - %s" % (full_path_old, str(e)))
