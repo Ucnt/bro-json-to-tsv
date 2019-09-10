@@ -72,8 +72,8 @@ if __name__ == "__main__":
             try:
                 print("Making directory: %s" % (full_path_new))
                 os.makedirs(full_path_new)
-            except FileExistsError:
-                pass
+            except Exception as e:
+                print("Error making directory: %s - %s" % (full_path_new, str(e)))
         else:
             # Be sure the file isn't compressed
             if ".gz" in full_path_old:
