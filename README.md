@@ -30,7 +30,7 @@ As an example, below is the methodology I use:
 ## Execution
 
 ```
-./run_parser.py -i json/ -o tsv/
+python3 run_parser.py -i json/ -o tsv/
 
 Converting files from JSON to TSV
   0%|                                                                                                                           | 0/9 [00:00<?, ?it/s]Running: json/conn.log
