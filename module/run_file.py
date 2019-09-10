@@ -26,6 +26,7 @@ def run_file(full_path_old, full_path_new):
                     file_type = get_type(line=line)
                     if not file_type:
                         print("Can't identify file type of %s" % (full_path_old))
+                        return
                     header = make_header(file_type=file_type)
                     output_file.write("%s\n" % (header))
                     first = False
