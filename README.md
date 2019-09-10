@@ -45,11 +45,13 @@ Result:
 
 ## Methodology
 
-* gunzip the files in the input folder if they are compressed
-* For every file in the input folder path:
-  * Check the first line of the file to see what file type it is (e.g. conn, by checking the keys in the dict)
-  * Add the TSV header to the output file
-  * Add each JSON line as a TSV to the output file
+* For every file/path in the input folder path:
+  * If the path is a folder, create the folder
+  * For every actual file
+    * If the file is a ".gz" gunzip it.
+    * Check the first line of the file to see what file type it is (e.g. conn, by checking the keys in the dict)
+    * Add the TSV header to the output file
+    * Add each JSON line as a TSV to the output file
 
 ## Notes
 
