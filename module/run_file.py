@@ -33,8 +33,6 @@ def run_file(full_path_old, full_path_new):
                     line_tsv = json_to_tsv(line=line, file_type=file_type)
                     if line_tsv:
                         output_file.write("%s\n" % (line_tsv))
-                else:
-                    print("Haven't been able to figure out what type of file this is: %s" (full_path_old))
 
         # Close the new tsv file
         output_file.close()
