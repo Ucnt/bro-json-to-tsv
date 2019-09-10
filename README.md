@@ -30,17 +30,21 @@ As an example, below is the methodology I use:
 ## Execution
 
 ```
-Given JSON files:
-/json/folder/path/first.log
-/json/folder/path/second.log
-/json/folder/path/third.log.gz
+./run_parser.py -i json/ -o tsv/
 
-Run: python3 run_parser.py --input_folder /json/folder/path --output_folder /output/folder/path
-
-Result:
-/output/folder/path/first.log
-/output/folder/path/second.log
-/output/folder/path/third.log
+Converting files from JSON to TSV
+  0%|                                                                                                                           | 0/9 [00:00<?, ?it/s]Running: json/conn.log
+Running: json/ssl.log
+Running: json/http.log
+Running: json/dns.log
+Making directory: tsv/subdir
+Uncompressing json/subdir/ssl-subdir.log.gz
+Running: json/subdir/ssl-subdir.log
+Uncompressing json/subdir/http-subdir.log.gz
+Running: json/subdir/http-subdir.log
+Running: json/subdir/conn-subdir.log
+Running: json/subdir/dns-subdir.log
+ 89%|██████████████████████████████████████████████████████████████████████████████████████████████████████▏            | 8/9 [00:00<00:00, 75.05it/s]
 ```
 
 ## Methodology
