@@ -21,13 +21,12 @@ input_folder = args.input_folder
 output_folder = args.output_folder
 
 
-def gunzip_files(input_folder):
+def gunzip_file(gz_file):
     """ gunzip all files in the input folder in case they are compressed """
-    print("Being sure all files in %s are gunzipped" % (input_folder))
-    p = subprocess.Popen("gunzip %s/*.gz" % (input_folder), stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True,)
+    print("Uncompressing %s" % (gz_file))
+    p = subprocess.Popen("gunzip %s" % (gz_file), stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True,)
     output, error = p.communicate()
     p_status = p.wait()
-    print("Done gunzipping files in %s" % (input_folder))
 
 
 def get_files_in_folder(input_folder):
@@ -41,9 +40,6 @@ def get_files_in_folder(input_folder):
 
 
 if __name__ == "__main__":
-    # gunzip all the things...
-    gunzip_files(input_folder)
-
     # Setup pool for processing the files
     pool = multiprocessing.Pool(processes=multiprocessing.cpu_count())
 
@@ -63,10 +59,13 @@ if __name__ == "__main__":
         pbar.update()
     for path, file_name in files:
         full_path_old = "%s/%s" % (path, file_name)
-        full_path_old = full_path_old.replace("//","/")
+        while "//" in full_path_old:
+            full_path_old = full_path_old.replace("//","/")
 
         full_path_new = "%s/%s" % (path, file_name)
-        full_path_new = full_path_new.replace(input_folder, output_folder).replace("//","/")
+        full_path_new = full_path_new.replace(input_folder, output_folder)
+        while "//" in full_path_new:
+            full_path_new = full_path_new.replace("//","/")
 
         if os.path.isdir(full_path_old):
             # In case there is a sub-directory, be sure the folder exists
@@ -76,6 +75,13 @@ if __name__ == "__main__":
             except FileExistsError:
                 pass
         else:
+            # Be sure the file isn't compressed
+            if ".gz" in full_path_old:
+                gunzip_file(gz_file=full_path_old)
+                full_path_old = full_path_old.replace(".gz","")
+                full_path_new = full_path_new.replace(".gz","")
+
+            #Run the file
             print("Running: %s" % (full_path_old))
             pool.apply_async(run_file, args=(full_path_old, full_path_new, ), callback=update)
 
