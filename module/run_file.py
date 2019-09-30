@@ -30,7 +30,8 @@ def run_file(full_path_old, full_path_new):
                     header = make_header(file_type=file_type)
                     output_file.write("%s\n" % (header))
                     first = False
-                elif file_type != "":
+
+                if file_type != "":
                     line_tsv = json_to_tsv(line=line, file_type=file_type)
                     if line_tsv:
                         output_file.write("%s\n" % (line_tsv))
