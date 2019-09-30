@@ -22,6 +22,7 @@ def run_file(full_path_old, full_path_new):
                 line = line.strip()
                 if not line or line.startswith("#"):
                     continue
+
                 if first:
                     file_type = get_type(line=line)
                     if not file_type:
