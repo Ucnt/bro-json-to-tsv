@@ -31,4 +31,4 @@ def json_to_tsv(line, file_type):
         line_tsv = "\t".join((map(str,fields)))
         return line_tsv
     except Exception as e:
-        print("Error parsing line %s - Error: %s" (line, str(e)))
+        print("Error parsing line %s - Error: %s" % (line, str(e)))
