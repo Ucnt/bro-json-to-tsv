@@ -49,15 +49,16 @@ Running: json/subdir/dns-subdir.log
 ## Methodology
 
 * For every file/path in the input folder path:
-  * If the path is a folder, create the folder
+  * For every input folder, create the corresponding output folder
   * For every actual file
+    * Create a new output file, in the same corresponding directory as the input file
     * If the file is a ".gz" gunzip it.
     * Check the first line of the file to see what file type it is (e.g. conn, by checking the keys in the dict)
     * Add the TSV header to the output file
-    * Add each JSON line as a TSV to the output file
+    * Add each JSON line as TSV to the output file
 
 ## Notes
 
 * Be careful with module/make_header.py.  The header format is finicky, e.g. most items are separated by tabs, not spaces.  Modifying it (e.g. converting the tabs to 4 spaces) will break TSV readers/parsers.
 * All initial and resulting files will be maintained.  It is up to you to manage the file deletion on  your own if you're  changing  in/out  files.
-* The script  will overwrite files in the  output folder if it already exists.
+* The script will overwrite files in the  output folder if it already exists.
