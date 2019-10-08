@@ -33,7 +33,6 @@ As an example, below is the methodology I use:
 python3 run_parser.py -i json/ -o tsv/
 
 Converting files from JSON to TSV
-  0%|                                                                                                                           | 0/9 [00:00<?, ?it/s]Running: json/conn.log
 Running: json/ssl.log
 Running: json/http.log
 Running: json/dns.log
@@ -44,7 +43,7 @@ Uncompressing json/subdir/http-subdir.log.gz
 Running: json/subdir/http-subdir.log
 Running: json/subdir/conn-subdir.log
 Running: json/subdir/dns-subdir.log
- 89%|██████████████████████████████████████████████████████████████████████████████████████████████████████▏            | 8/9 [00:00<00:00, 75.05it/s]
+ 89%|█████████████████████████████████████████████████████████▏            | 8/9 [00:00<00:00, 75.05it/s]
 ```
 
 ## Methodology
