@@ -54,10 +54,11 @@ There is an optional parameter "--keep_original" or "-k" which will keep the gun
   * For every input folder, create the corresponding output folder
   * For every actual file
     * Create a new output file, in the same corresponding directory as the input file
-    * If the file is a ".gz" gunzip it.
+    * If the file is a ".gz" gunzip it.  (keeping gz file if -k/--keep_original parameter is given)
     * Check the first line of the file to see what file type it is (e.g. conn, by checking the keys in the dict)
     * Add the TSV header to the output file
     * Add each JSON line as TSV to the output file
+    * Delete the decompressed ".gz" file IF the -k/--keep_original parameter is given
 
 ## Notes
 
