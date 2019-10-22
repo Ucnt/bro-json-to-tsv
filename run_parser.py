@@ -15,7 +15,8 @@ from tqdm import tqdm
 import argparse
 parser = argparse.ArgumentParser(description='Get input and output folder locations')
 parser.add_argument('-i', '--input_folder', required=True,  help='input log folder')
-parser.add_argument('-o', '--output_folder',  required=True, help='output log folder')
+parser.add_argument('-o', '--output_folder', required=True, help='output log folder')
+parser.add_argument('-k', '--keep_original', required=False, action='store_true', help='keep the original files')
 args = parser.parse_args()
 input_folder = args.input_folder
 output_folder = args.output_folder
@@ -24,7 +25,10 @@ output_folder = args.output_folder
 def gunzip_file(gz_file):
     """ gunzip all files in the input folder in case they are compressed """
     print("Uncompressing %s" % (gz_file))
-    p = subprocess.Popen("gunzip %s" % (gz_file), stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True,)
+    if args.keep_original:
+        p = subprocess.Popen("gunzip %s --keep" % (gz_file), stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True,)
+    else:
+        p = subprocess.Popen("gunzip %s" % (gz_file), stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True,)
     output, error = p.communicate()
     p_status = p.wait()
 
