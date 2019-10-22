@@ -6,11 +6,13 @@ Author: Matt Svensson
 Purpose: Convert the line of JSON to a TSV, given its file type (e.g. conn, dhcp, ssl, etc)
 
 '''
+import subprocess
 from module.json_to_tsv import json_to_tsv
 from module.make_header import make_header
 from module.type_mapper import get_type
 
-def run_file(full_path_old, full_path_new):
+
+def run_file(full_path_old, full_path_new, is_gz_file):
     try:
         output_file = open(full_path_new, "w+")
 
@@ -39,5 +41,13 @@ def run_file(full_path_old, full_path_new):
 
         # Close the new tsv file
         output_file.close()
+
+        # If an originally gz file, delete decompressed file
+        if is_gz_file:
+            print("Deleting uncompressed file %s" % (full_path_old))
+            p = subprocess.Popen("rm %s" % (full_path_old), stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+            output, error = p.communicate()
+            p_status = p.wait()
+
     except Exception as e:
         print("Error parsing %s - %s" % (full_path_old, str(e)))

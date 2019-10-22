@@ -46,7 +46,7 @@ Running: json/subdir/dns-subdir.log
  89%|█████████████████████████████████████████████████████████▏            | 8/9 [00:00<00:00, 75.05it/s]
 ```
 
-There is an optional parameter "--keep_original" or "-k" which will keep the gunzip'd files
+There is an optional parameter "--keep_original" or "-k" which will keep the gunzip'd files AND delete the decompressed files after running them
 
 ## Methodology
 

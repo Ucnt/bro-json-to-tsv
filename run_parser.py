@@ -16,7 +16,7 @@ import argparse
 parser = argparse.ArgumentParser(description='Get input and output folder locations')
 parser.add_argument('-i', '--input_folder', required=True,  help='input log folder')
 parser.add_argument('-o', '--output_folder', required=True, help='output log folder')
-parser.add_argument('-k', '--keep_original', required=False, action='store_true', help='keep the original files')
+parser.add_argument('-k', '--keep_original', required=False, action='store_true', help='keep the original gz files, deleting unpressed once converted')
 args = parser.parse_args()
 input_folder = args.input_folder
 output_folder = args.output_folder
@@ -80,14 +80,16 @@ if __name__ == "__main__":
                 print("Error making directory: %s - %s" % (full_path_new, str(e)))
         else:
             # Be sure the file isn't compressed
+            is_gz_file = False
             if ".gz" in full_path_old:
+                is_gz_file = True
                 gunzip_file(gz_file=full_path_old)
                 full_path_old = full_path_old.replace(".gz","")
                 full_path_new = full_path_new.replace(".gz","")
 
             #Run the file
             print("Running: %s" % (full_path_old))
-            pool.apply_async(run_file, args=(full_path_old, full_path_new, ), callback=update)
+            pool.apply_async(run_file, args=(full_path_old, full_path_new, is_gz_file), callback=update)
 
     # Keep running until everything is done
     pool.close()
