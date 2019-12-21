@@ -23,6 +23,8 @@ def json_to_tsv(line, file_type):
                 if field == "ts":
                     d = datetime.datetime.strptime(line_json[field], '%Y-%m-%dT%H:%M:%S.%fZ')
                     fields.append("%s.%s" % (d.strftime("%s"), d.microsecond))
+                elif file_type == "http" and field == "origin":
+                    pass
                 else:
                     fields.append(line_json[field])
             except Exception as e:

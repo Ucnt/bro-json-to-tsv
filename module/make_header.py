@@ -10,6 +10,10 @@ from module.type_mapper import fields_dict, types_dict
 
 
 def make_header(file_type):
+    fd = fields_dict[file_type]
+    if file_type == "http":
+        fd.remove('origin')
+
     header = '''
 #separator \\x09
 #set_separator	,
@@ -18,5 +22,5 @@ def make_header(file_type):
 #path	%s
 #open	0000-00-00-00-00-00
 #fields	%s
-#types	%s''' % (file_type, "\t".join(fields_dict[file_type]), "\t".join(types_dict[file_type]))
+#types	%s''' % (file_type, "\t".join(fd), "\t".join(types_dict[file_type]))
     return header.strip()
