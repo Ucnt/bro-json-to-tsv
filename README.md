@@ -1,3 +1,5 @@
+# DEPRICATED - RITA NOW SUPPORTS JSON - https://github.com/activecm/rita
+
 # Bro JSON to TSV
 
 ## Purpose
