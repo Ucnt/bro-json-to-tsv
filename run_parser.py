@@ -44,6 +44,15 @@ def get_files_in_folder(input_folder):
 
 
 if __name__ == "__main__":
+    print('''
+############################################################################################################
+############################################################################################################
+RITA NOW SUPPORTS JSON INPUT.  RECOMMEND THAT YOU USE THEIR NATIVE CAPABILITY INSTEAD OF JSON->TSV WITH THIS
+############################################################################################################
+############################################################################################################
+    ''')    
+    
+    
     # Setup pool for processing the files
     pool = multiprocessing.Pool(processes=multiprocessing.cpu_count())
 
