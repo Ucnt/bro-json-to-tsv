@@ -1,6 +1,7 @@
 # DEPRICATED - RITA NOW SUPPORTS JSON - https://github.com/activecm/rita
 
-# Bro JSON to TSV
+
+## Bro JSON to TSV
 
 ## Purpose
 Covert Bro JSON files (specifically, conn, dns, http and ssl) in the input_folder to TSV in the output_folder 
